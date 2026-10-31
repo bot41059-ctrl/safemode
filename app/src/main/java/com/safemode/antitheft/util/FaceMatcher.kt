@@ -29,16 +29,20 @@ object FaceMatcher {
             val image = InputImage.fromBitmap(bitmap, 0)
             detector.process(image)
                 .addOnSuccessListener { faces ->
-                    if (faces.isNotEmpty()) {
-                        val face = faces[0]
-                        val vector = computeFaceVector(face, angleLabel)
-                        continuation.resume(vector)
-                    } else {
-                        continuation.resume(null)
+                    if (continuation.isActive) {
+                        if (faces.isNotEmpty()) {
+                            val face = faces[0]
+                            val vector = computeFaceVector(face, angleLabel)
+                            continuation.resume(vector)
+                        } else {
+                            continuation.resume(null)
+                        }
                     }
                 }
                 .addOnFailureListener {
-                    continuation.resume(null)
+                    if (continuation.isActive) {
+                        continuation.resume(null)
+                    }
                 }
         }
 

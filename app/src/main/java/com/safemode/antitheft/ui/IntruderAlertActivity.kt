@@ -217,7 +217,10 @@ class IntruderAlertActivity : AppCompatActivity() {
     }
 
     private fun getBatteryPercentage(): Int {
-        val batteryStatus: Intent? = IntentFilter(Intent.ACTION_BATTERY_CHANGED).let { ifilter ->
+        val ifilter = IntentFilter(Intent.ACTION_BATTERY_CHANGED)
+        val batteryStatus: Intent? = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            registerReceiver(null, ifilter, Context.RECEIVER_NOT_EXPORTED)
+        } else {
             registerReceiver(null, ifilter)
         }
         val level: Int = batteryStatus?.getIntExtra(BatteryManager.EXTRA_LEVEL, -1) ?: -1
