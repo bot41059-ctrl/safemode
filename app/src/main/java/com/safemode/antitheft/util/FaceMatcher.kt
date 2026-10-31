@@ -9,7 +9,7 @@ import com.google.mlkit.vision.face.FaceDetectorOptions
 import com.google.mlkit.vision.face.FaceLandmark
 import com.safemode.antitheft.model.FaceVector
 import kotlin.coroutines.resume
-import kotlin.coroutines.suspendCancellableCoroutine
+import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.math.hypot
 import kotlin.math.sqrt
 
