@@ -15,9 +15,6 @@
         <item name="android:statusBarColor">@color/bg_pure_black</item>
         <item name="android:navigationBarColor">@color/bg_pure_black</item>
         <item name="android:windowBackground">@color/bg_pure_black</item>
-        <item name="android:windowShowWhenLocked">true</item>
-        <item name="android:windowTurnScreenOn">true</item>
-        <item name="android:keepScreenOn">true</item>
     </style>
 
     <!-- Table Guard Theme (Pitch Black Stealth Mode) -->
@@ -27,8 +24,5 @@
         <item name="android:statusBarColor">@color/bg_pure_black</item>
         <item name="android:navigationBarColor">@color/bg_pure_black</item>
         <item name="android:windowBackground">@color/bg_pure_black</item>
-        <item name="android:windowShowWhenLocked">true</item>
-        <item name="android:windowTurnScreenOn">true</item>
-        <item name="android:keepScreenOn">true</item>
     </style>
 </resources>

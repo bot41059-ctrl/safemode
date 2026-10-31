@@ -59,7 +59,6 @@
             android:excludeFromRecents="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:showOnLockScreen="true"
             android:showWhenLocked="true"
             android:turnScreenOn="true"
             android:theme="@style/Theme.SafeMode.FullScreenAlert" />
@@ -69,7 +68,6 @@
             android:name=".ui.TableGuardActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:showOnLockScreen="true"
             android:showWhenLocked="true"
             android:turnScreenOn="true"
             android:theme="@style/Theme.SafeMode.TableGuard" />
