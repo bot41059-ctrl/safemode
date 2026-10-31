@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/tableGuardRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_pure_black"
+    android:keepScreenOn="true">
+
+    <!-- Silent Hidden Camera View for background face verification -->
+    <androidx.camera.view.PreviewView
+        android:id="@+id/tableGuardCameraView"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:alpha="0.01" />
+
+    <!-- Dim OLED Minimalist Display (Looks like sleeping phone) -->
+    <LinearLayout
+        android:id="@+id/dimDisplayContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/tvDimClock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12:00"
+            android:textColor="#263238"
+            android:textSize="48sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="🛡️ Safe Mode Guard Active"
+            android:textColor="#1AFFFFFF"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Double-tap anywhere to exit"
+            android:textColor="#12FFFFFF"
+            android:textSize="11sp" />
+    </LinearLayout>
+
+    <!-- White Flash Boost Overlay (Flashes 100% white for 0.5s in dark rooms) -->
+    <View
+        android:id="@+id/viewScreenFlashBoost"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:visibility="gone" />
+
+</FrameLayout>

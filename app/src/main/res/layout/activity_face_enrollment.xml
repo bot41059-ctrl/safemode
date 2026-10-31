@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_dark"
+    android:padding="20dp">
+
+    <!-- Header -->
+    <TextView
+        android:id="@+id/tvEnrollmentTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register Owner Face"
+        android:textColor="@color/text_primary"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvEnrollmentDesc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="We need 3 face angles (Center, Left, Right) to pehchan your face with high accuracy."
+        android:textColor="@color/text_secondary"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvEnrollmentTitle" />
+
+    <!-- Step Progress Indicator -->
+    <LinearLayout
+        android:id="@+id/layoutStepIndicators"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/tvEnrollmentDesc">
+
+        <TextView
+            android:id="@+id/step1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_btn_primary"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="4dp"
+            android:text="1. Front"
+            android:textColor="#0B0E14"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="20dp"
+            android:layout_height="2dp"
+            android:background="@color/accent_cyan" />
+
+        <TextView
+            android:id="@+id/step2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_card_cyber"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="4dp"
+            android:text="2. Left"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp" />
+
+        <View
+            android:layout_width="20dp"
+            android:layout_height="2dp"
+            android:background="@color/bg_card_highlight" />
+
+        <TextView
+            android:id="@+id/step3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_card_cyber"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="4dp"
+            android:text="3. Right"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <!-- Camera Preview Container with Circular Frame -->
+    <FrameLayout
+        android:id="@+id/previewContainer"
+        android:layout_width="260dp"
+        android:layout_height="260dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/bg_circle_radar"
+        android:padding="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutStepIndicators">
+
+        <androidx.camera.view.PreviewView
+            android:id="@+id/viewFinder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+
+    <!-- Real-time instruction status -->
+    <TextView
+        android:id="@+id/tvInstructionStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Looking for face in front camera..."
+        android:textColor="@color/accent_cyan"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/previewContainer" />
+
+    <!-- Capture Angle Button -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnCaptureAngle"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/bg_btn_primary"
+        android:text="CAPTURE ANGLE 1 (FRONT)"
+        android:textColor="#0B0E14"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/btnResetEnrollment" />
+
+    <TextView
+        android:id="@+id/btnResetEnrollment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="?attr/selectableItemBackground"
+        android:padding="8dp"
+        android:text="Clear &amp; Start Over"
+        android:textColor="@color/text_muted"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

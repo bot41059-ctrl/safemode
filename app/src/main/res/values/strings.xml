@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Safe Mode</string>
+    <string name="app_tagline">Smart Anti-Theft &amp; Intruder Alert</string>
+
+    <string name="status_armed">SAFE MODE ACTIVE</string>
+    <string name="status_disarmed">STANDBY / DISARMED</string>
+    <string name="status_protecting">Device is armed. Any pickup triggers instant face verification.</string>
+    <string name="status_idle">Safe Mode is off. Tap below to activate guard.</string>
+
+    <string name="btn_activate">ACTIVATE SAFE MODE</string>
+    <string name="btn_deactivate">DEACTIVATE</string>
+    <string name="btn_table_guard">ENTER TABLE GUARD MODE</string>
+
+    <string name="card_face_status">Owner Face ID</string>
+    <string name="card_face_registered">Registered (Ready)</string>
+    <string name="card_face_not_registered">Not Set (Register Now)</string>
+
+    <string name="card_pin_status">Emergency PIN</string>
+    <string name="card_pin_set">Configured</string>
+
+    <string name="card_logs_title">Intruder Evidence</string>
+    <string name="card_settings_title">Settings</string>
+
+    <string name="default_alert_msg">YOU THE FUCKING HELL MAN GO TO HELL</string>
+    <string name="intruder_alert_title">INTRUDER DETECTED!</string>
+
+    <string name="notification_title">Safe Mode Guard is Active</string>
+    <string name="notification_desc">Monitoring device motion and position</string>
+
+    <string name="table_guard_info">Table Guard is ON. Place phone on surface.\nLifting the phone triggers silent verification.</string>
+</resources>

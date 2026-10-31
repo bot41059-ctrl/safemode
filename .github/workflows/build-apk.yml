@@ -1,0 +1,77 @@
+name: Build Safe Mode APK
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build & Package Android APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: gradle
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Ensure Gradle Wrapper Exists
+        run: |
+          mkdir -p gradle/wrapper
+          if [ ! -f gradle/wrapper/gradle-wrapper.jar ]; then
+            echo "Downloading gradle-wrapper.jar from official Gradle repo..."
+            curl -L -o gradle/wrapper/gradle-wrapper.jar https://github.com/gradle/gradle/raw/v8.5.0/gradle/wrapper/gradle-wrapper.jar
+          fi
+          chmod +x gradlew
+
+      - name: Build Debug APK with Gradle
+        run: ./gradlew assembleDebug --no-daemon --stacktrace
+
+      - name: Rename Output APK
+        run: |
+          mkdir -p output_apk
+          cp app/build/outputs/apk/debug/app-debug.apk output_apk/SafeMode-AntiTheft-v1.0-debug.apk
+
+      - name: Upload APK as Workflow Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: SafeMode-AntiTheft-APK
+          path: output_apk/SafeMode-AntiTheft-v1.0-debug.apk
+          retention-days: 30
+
+      - name: Create GitHub Release on Tag or Dispatch (Optional)
+        if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch'
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v1.0.${{ github.run_number }}
+          name: "Safe Mode App v1.0 (Build #${{ github.run_number }})"
+          body: |
+            ### 🛡️ Safe Mode — Smart Anti-Theft & Intruder Alert App
+            **Features included in this build:**
+            - 🚨 Accelerometer Motion Detection (Table & Pocket Detection)
+            - 📸 Silent Front Camera Face Scan & ML Kit Facial Recognition
+            - ⚡ Low-Light Screen Flash Boost for Night Detection
+            - 🔊 Anti-Theft Piercing Siren & 100% Volume Lock
+            - 🛑 Flashing Red Fullscreen Intruder Alert ("YOU THE FUCKING HELL MAN GO TO HELL")
+            - 🔑 4-Digit Secret PIN Emergency Bypass
+            - 🗃️ Intruder Logs Gallery (Photos with Timestamps & Battery Info)
+            - 📲 Optional Telegram Cloud Alert Sync
+
+            Directly install `SafeMode-AntiTheft-v1.0-debug.apk` on your Android phone!
+          files: output_apk/SafeMode-AntiTheft-v1.0-debug.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
